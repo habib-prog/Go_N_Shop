@@ -1,5 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const DataBase = require("./src/config/database");
+
 dotenv.config();
 
 const app = express();
@@ -9,6 +11,7 @@ const Port = process.env.port;
 
 const RunApp = async () => {
   try {
+    DataBase();
     app.listen(Port, () => {
       console.log(`🌐 Server Running on Port: ${Port}`);
     });
