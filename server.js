@@ -1,17 +1,19 @@
 const express = require("express");
+const router = require("./src/routes/index");
 const dotenv = require("dotenv");
 const DataBase = require("./src/config/database");
 
 dotenv.config();
 
 const app = express();
+app.use(router);
 app.use(express.json());
 
 const Port = process.env.port;
 
 const RunApp = async () => {
   try {
-    DataBase();
+    await DataBase();
     app.listen(Port, () => {
       console.log(`🌐 Server Running on Port: ${Port}`);
     });
